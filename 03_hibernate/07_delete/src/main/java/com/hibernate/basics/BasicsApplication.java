@@ -18,22 +18,29 @@ public class BasicsApplication {
             Session curSession = factory.getCurrentSession();
             
             curSession.beginTransaction();
-            Student student = curSession.get(Student.class, 3);
+            Student student = curSession.get(Student.class, 6);
             System.out.println(student);
-            student.setFirstName("Jackson");
+            curSession.delete(student);
             System.out.println(student);
-            curSession.getTransaction().commit();
-
-            curSession = factory.getCurrentSession();
-            curSession.beginTransaction();
-
-            curSession.createQuery("update Student set email='fooBar@emal.com' where first_name='Jackson'").executeUpdate();
             curSession.getTransaction().commit();
 
             curSession = factory.getCurrentSession();
             curSession.beginTransaction();
 
             List<Student> students = curSession.createQuery("from Student").getResultList();
+            print(students);
+            curSession.getTransaction().commit();
+
+            curSession = factory.getCurrentSession();
+            curSession.beginTransaction();
+
+            curSession.createQuery("delete from Student where email='fooBar@emal.com'").executeUpdate();
+            curSession.getTransaction().commit();
+
+            curSession = factory.getCurrentSession();
+            curSession.beginTransaction();
+
+            students = curSession.createQuery("from Student").getResultList();
             print(students);
             curSession.getTransaction().commit();
         }finally{
