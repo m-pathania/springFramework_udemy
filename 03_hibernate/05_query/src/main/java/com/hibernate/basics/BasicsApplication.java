@@ -36,6 +36,10 @@ public class BasicsApplication {
             List<Student> students = newSession.createQuery("from Student s where s.email LIKE '%email.com'").getResultList();
             print(students);
 
+            List<Student> students1 = newSession.createQuery("from Student s where s.email LIKE 'temp@%'").getResultList();
+            print(students1);
+            System.out.println("\n\n\n");
+
             newSession.getTransaction().commit();
         }finally{
             factory.close();
