@@ -35,6 +35,8 @@ DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) DEFAULT NULL,
+  `theory` int DEFAULT NULL,
+  `practical` int DEFAULT NULL,
   `instructor_id` int(11) DEFAULT NULL,
   
   PRIMARY KEY (`id`),
